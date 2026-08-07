@@ -8,8 +8,15 @@
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  border: 1px solid var(--slate-deep, #1a2740);
+  border-radius: 4px;
+  background-color: var(--abyss, #0a1628);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.cards > ul > li:hover {
+  border-color: var(--iron, #c4783a);
 }
 
 .cards .cards-card-body {

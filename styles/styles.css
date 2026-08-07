@@ -11,13 +11,24 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* Abyssal Instrument palette — see DESIGN.md */
+  --void: #05070d;
+  --abyss: #0a1628;
+  --slate-deep: #1a2740;
+  --ice: #a8c5d4;
+  --paper: #e8eef4;
+  --iron: #c4783a;
+  --iron-bright: #e8a05c;
+  --signal: #5b9fd4;
+  --warn: #d4a04a;
+
+  /* colors (EDS tokens) */
+  --background-color: var(--void);
+  --light-color: var(--abyss);
+  --dark-color: var(--slate-deep);
+  --text-color: var(--paper);
+  --link-color: var(--signal);
+  --link-hover-color: var(--iron-bright);
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -70,6 +81,13 @@
   }
 }
 
+html {
+  color-scheme: dark;
+  background: var(--void);
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 16px);
+}
+
 body {
   display: none;
   margin: 0;
@@ -77,11 +95,17 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.65;
+  text-rendering: optimizelegibility;
 }
 
 body.appear {
   display: block;
+}
+
+::selection {
+  background: var(--iron);
+  color: var(--void);
 }
 
 header {
@@ -137,9 +161,12 @@ pre {
 pre {
   padding: 16px;
   border-radius: 8px;
-  background-color: var(--light-color);
+  border: 1px solid var(--slate-deep);
+  background-color: var(--abyss);
   overflow-x: auto;
   white-space: pre;
+  color: var(--ice);
+  font-size: var(--body-font-size-xs);
 }
 
 main > div {
@@ -319,7 +346,49 @@ main > .section:first-of-type {
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--light-color);
+  background-color: var(--abyss);
   margin: 0;
-  padding: 40px 0;
+  padding: 48px 0;
+  border-block: 1px solid var(--slate-deep);
+}
+
+main .section.dark {
+  background: linear-gradient(180deg, var(--void) 0%, #0c101c 100%);
+  margin: 0;
+  padding: 48px 0;
+  border-top: 1px solid var(--slate-deep);
+}
+
+/* cards on dark ground */
+main .cards > ul > li,
+main .cards-card {
+  border-color: var(--slate-deep);
+}
+
+main .cards .cards-card-body h3 a {
+  color: var(--iron-bright);
+}
+
+/* reading measure */
+main .section > div > h1 + p,
+main .section > div > h2 + p,
+main .section > div > p {
+  max-width: 46rem;
+}
+
+main .section > div > ul,
+main .section > div > ol {
+  max-width: 46rem;
+}
+
+/* footer tone */
+footer {
+  border-top: 1px solid var(--slate-deep);
+  background: var(--abyss);
+  color: var(--ice);
+  font-size: var(--body-font-size-s);
+}
+
+footer a:any-link {
+  color: var(--signal);
 }

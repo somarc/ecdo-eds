@@ -1,6 +1,8 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: rgb(5 7 13 / 92%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--slate-deep, #1a2740);
   width: 100%;
   z-index: 2;
   position: fixed;

@@ -1,34 +1,61 @@
-# Your Project's Title...
-Your project's description...
+# ECDO Lab (EDS)
 
-## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+**Hypothesis lab** for Exothermic Core–Mantle Decoupling – Dzhanibekov Oscillation (ECDO) theory on Adobe Edge Delivery Services.
 
-## Documentation
+> Exploratory hypothesis — not a forecast. Measured Earth-system data lives in the sister instrument (Wobblescope: `../ecdo`).
 
-Before using the aem-boilerplate, we recommand you to go through the documentation on https://www.aem.live/docs/ and more specifically:
-1. [Developer Tutorial](https://www.aem.live/developer/tutorial)
-2. [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
-3. [Web Performance](https://www.aem.live/developer/keeping-it-100)
-4. [Markup, Sections, Blocks, and Auto Blocking](https://www.aem.live/developer/markup-sections-blocks)
+| | |
+|--|--|
+| **GitHub** | https://github.com/somarc/ecdo-eds |
+| **Preview** | https://main--ecdo-eds--somarc.aem.page/ |
+| **Live** | https://main--ecdo-eds--somarc.aem.live/ |
+| **DA** | https://da.live/#/somarc/ecdo-eds/ |
+| **Org / repo** | `somarc` / `ecdo-eds` |
 
-## Installation
+## Pages
 
-```sh
-npm i
-```
+| Route | Purpose |
+|-------|---------|
+| `/` | Thesis + epistemic posture |
+| `/states` | State 1 vs State 2, 104°, Np′ |
+| `/signals` | Claim vs measurable signals |
+| `/evidence` | Touchpoints (exploratory) |
+| `/instrument` | Bridge to Wobblescope |
+| `/sources` | Citations & provenance |
 
-## Linting
+## Design
 
-```sh
-npm run lint
-```
+See [`DESIGN.md`](DESIGN.md) — Abyssal Instrument palette and epistemic rules.
 
 ## Local development
 
-1. Create a new repository based on the `aem-boilerplate` template
-1. Add the [AEM Code Sync GitHub App](https://github.com/apps/aem-code-sync) to the repository
-1. Install the [AEM CLI](https://github.com/adobe/helix-cli): `npm install -g @adobe/aem-cli`
-1. Start AEM Proxy: `aem up` (opens your browser at `http://localhost:3000`)
-1. Open the `{repo}` directory in your favorite IDE and start coding :)
+```bash
+npm install
+npx aem up
+```
+
+Content is DA-mounted via `fstab.yaml` → `https://content.da.live/somarc/ecdo-eds/`.
+
+## Setup (first run)
+
+Human steps (AEM Code Sync + DA auth + content seed):
+
+→ **[`docs/SETUP.md`](docs/SETUP.md)**
+
+## Content source of truth
+
+Authorable HTML lives under `da-content/` for seeding and review, then in DA:
+
+```bash
+da auth status
+da --commit content put /index.html da-content/index.html
+da preview page /
+```
+
+## Media
+
+Imagine briefs: `media/briefs/`. Generated assets stage under `media/` before DA upload.
+
+## License
+
+Apache-2.0 (boilerplate). Theory content is a third-party hypothesis summary — not endorsement.
