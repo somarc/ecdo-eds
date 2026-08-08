@@ -8,6 +8,7 @@
   position: relative;
   padding-block: clamp(52px, 9vw, 108px);
   color: var(--ice);
+  overflow-x: clip;
   overflow-wrap: anywhere;
 }
 
