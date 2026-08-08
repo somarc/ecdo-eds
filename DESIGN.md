@@ -68,5 +68,11 @@ two-column compare on `/states`.
 
 ## Blocks
 
-Start with boilerplate: `hero`, `columns`, `cards`. Custom blocks only when
+Start with boilerplate: `hero`, `columns`, `cards`, `video-hero`. Custom blocks only when
 content proves a gap (e.g. dual-state compare, epistemic callout).
+
+## Art direction & QA
+
+Theme tokens are not enough. For section rhythm, structural fidelity to DA markup,
+still-first media, and browser acceptance criteria, see
+[`docs/ART-DIRECTION-QA.md`](docs/ART-DIRECTION-QA.md) (rubric ≥17/20).
