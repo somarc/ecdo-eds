@@ -1,29 +1,41 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 28px;
+  padding-block: 24px;
+  border-top: 1px solid var(--line);
 }
 
 .columns img {
+  display: block;
   width: 100%;
+  filter: saturate(0.78) contrast(1.06);
 }
 
 .columns > div > div {
   order: 1;
+  min-width: 0;
 }
 
 .columns > div > .columns-img-col {
   order: 0;
 }
 
-.columns > div > .columns-img-col img {
-  display: block;
+.columns h2,
+.columns h3 {
+  max-width: 13ch;
+}
+
+.columns p {
+  color: var(--ice);
 }
 
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    gap: clamp(48px, 7vw, 96px);
+    padding-block: 40px;
   }
 
   .columns > div > div {
