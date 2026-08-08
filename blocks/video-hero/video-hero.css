@@ -1,0 +1,111 @@
+/* video-hero — Abyssal Instrument cinematic stage */
+
+.video-hero-container .video-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.video-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: calc(100svh - var(--nav-height, 64px));
+  overflow: hidden;
+  color: var(--paper, #e8eef4);
+  background: var(--void, #05070d);
+}
+
+.video-hero video {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.video-hero::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(5 7 13 / 25%) 0%, rgb(5 7 13 / 45%) 40%, rgb(5 7 13 / 88%) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgb(10 22 40 / 70%) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.video-hero .video-hero-content {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  text-align: left;
+}
+
+.video-hero h1 {
+  max-width: 18ch;
+  margin: 0 0 0.4em;
+  color: var(--paper, #e8eef4);
+  font-size: clamp(2.35rem, 6vw, 4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.video-hero p {
+  max-width: 40rem;
+  margin: 0.45em 0;
+  color: var(--ice, #a8c5d4);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.video-hero p em {
+  display: inline-block;
+  margin-top: 0.4em;
+  padding: 0.35em 0.75em;
+  border: 1px solid rgb(212 160 74 / 45%);
+  border-radius: 999px;
+  background: rgb(212 160 74 / 10%);
+  color: var(--warn, #d4a04a);
+  font-size: 0.82em;
+  font-style: normal;
+  letter-spacing: 0.02em;
+}
+
+.video-hero a:any-link {
+  color: var(--iron-bright, #e8a05c);
+  font-weight: 500;
+}
+
+.video-hero.video-failed {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgb(91 159 212 / 18%) 0%, transparent 55%),
+    linear-gradient(165deg, #0a1628 0%, #05070d 55%, #0c101c 100%);
+}
+
+@media (width >= 900px) {
+  .video-hero .video-hero-content {
+    padding: 72px 32px 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-hero video {
+    display: none;
+  }
+
+  .video-hero {
+    background:
+      center / cover no-repeat url('/media/hero-na-topo-01-calm.jpg'),
+      var(--void, #05070d);
+  }
+}
