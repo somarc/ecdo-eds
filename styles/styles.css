@@ -359,29 +359,7 @@ main .section.dark {
   border-top: 1px solid var(--slate-deep);
 }
 
-/* cards on dark ground */
-main .cards > ul > li,
-main .cards-card {
-  border-color: var(--slate-deep);
-}
-
-main .cards .cards-card-body h3 a {
-  color: var(--iron-bright);
-}
-
-/* reading measure */
-main .section > div > h1 + p,
-main .section > div > h2 + p,
-main .section > div > p {
-  max-width: 46rem;
-}
-
-main .section > div > ul,
-main .section > div > ol {
-  max-width: 46rem;
-}
-
-/* footer tone */
+/* footer tone — lower-specificity links before nested card anchors */
 footer {
   border-top: 1px solid var(--slate-deep);
   background: var(--abyss);
@@ -391,4 +369,22 @@ footer {
 
 footer a:any-link {
   color: var(--signal);
+}
+
+/* reading measure — general p before more specific descendants would be required;
+   keep a single equal-specificity list to satisfy no-descending-specificity */
+main .section > div > p,
+main .section > div > ul,
+main .section > div > ol {
+  max-width: 46rem;
+}
+
+/* cards on dark ground */
+main .cards > ul > li,
+main .cards-card {
+  border-color: var(--slate-deep);
+}
+
+main .cards .cards-card-body h3 a {
+  color: var(--iron-bright);
 }
