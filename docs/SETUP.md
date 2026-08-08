@@ -101,9 +101,12 @@ da publish page /
 ```bash
 cd /Users/mhess/marc_projects/ecdo-eds
 npm install
+npm run lint          # required before push — CI Build runs the same
 npx aem up
 # or: aem up
 ```
+
+**Commit gate:** GitHub Actions `Build` runs `npm run lint` (eslint + stylelint on `blocks/**/*.css` and `styles/*.css`). Do not push theme/CSS without a green local lint. Stylelint `no-descending-specificity` is strict: lower-specificity selectors first; prefer one equal-specificity group over `h1 + p` then bare `p`.
 
 ## Sister projects
 
