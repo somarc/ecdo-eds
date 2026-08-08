@@ -105,7 +105,7 @@
 
   .video-hero {
     background:
-      center / cover no-repeat url('/media/hero-na-topo-01-calm.jpg'),
+      center / cover no-repeat url('/media/hero-na-topo-web-prompt-a.jpg'),
       var(--void, #05070d);
   }
 }

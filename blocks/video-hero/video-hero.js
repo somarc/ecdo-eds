@@ -24,8 +24,10 @@ export default function decorate(block) {
     video.loop = true;
     video.muted = true;
     video.playsInline = true;
+    video.preload = 'metadata';
     video.setAttribute('aria-hidden', 'true');
-    video.setAttribute('poster', '');
+    // Prompt A still — LCP-friendly first paint before the loop starts
+    video.poster = '/media/hero-na-topo-web-prompt-a.jpg';
     video.addEventListener('error', () => {
       // eslint-disable-next-line no-console
       console.warn(`[video-hero] failed to load: ${videoSrc}`);
