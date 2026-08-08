@@ -29,9 +29,8 @@ export default function decorate(block) {
     // Prompt A still — LCP-friendly first paint before the loop starts
     video.poster = '/media/hero-na-topo-web-prompt-a.jpg';
     video.addEventListener('error', () => {
-      // eslint-disable-next-line no-console
-      console.warn(`[video-hero] failed to load: ${videoSrc}`);
       block.classList.add('video-failed');
+      video.remove();
     });
     block.append(video);
   }

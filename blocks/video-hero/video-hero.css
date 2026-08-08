@@ -1,7 +1,7 @@
-/* video-hero — Abyssal Instrument cinematic stage */
+/* Video hero — cinematic research-cover treatment */
 
 .video-hero-container .video-hero-wrapper {
-  max-width: unset;
+  max-width: none;
   padding: 0;
 }
 
@@ -10,11 +10,41 @@
   isolation: isolate;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
-  min-height: calc(100svh - var(--nav-height, 64px));
+  min-height: max(680px, calc(100svh - var(--nav-height)));
   overflow: hidden;
-  color: var(--paper, #e8eef4);
-  background: var(--void, #05070d);
+  background:
+    center / cover no-repeat url('/media/hero-na-topo-web-prompt-a.jpg'),
+    var(--void);
+  color: var(--paper);
+}
+
+.video-hero::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(5 8 13 / 94%) 0%, rgb(5 8 13 / 76%) 44%, rgb(5 8 13 / 20%) 78%),
+    linear-gradient(180deg, rgb(5 8 13 / 22%) 0%, rgb(5 8 13 / 18%) 48%, rgb(5 8 13 / 92%) 100%);
+  pointer-events: none;
+}
+
+.video-hero::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 32px;
+  right: 24px;
+  width: clamp(88px, 15vw, 180px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(169 189 202 / 24%);
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 49.6%, rgb(169 189 202 / 24%) 50%, transparent 50.4%),
+    linear-gradient(transparent 49.6%, rgb(169 189 202 / 24%) 50%, transparent 50.4%);
+  box-shadow: 0 0 0 18px rgb(104 183 220 / 3%);
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .video-hero video {
@@ -24,88 +54,148 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.72;
+  opacity: 0.82;
 }
 
-.video-hero::after {
-  content: '';
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgb(5 7 13 / 25%) 0%, rgb(5 7 13 / 45%) 40%, rgb(5 7 13 / 88%) 100%),
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgb(10 22 40 / 70%) 0%, transparent 70%);
-  pointer-events: none;
+.video-hero.video-failed video {
+  display: none;
 }
 
 .video-hero .video-hero-content {
   position: relative;
-  z-index: 2;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 52rem;
+  z-index: 3;
+  width: min(100%, var(--content-max));
   margin: 0 auto;
-  padding: 48px 24px 64px;
-  text-align: left;
+  padding: 148px 24px 52px;
+}
+
+.video-hero .video-hero-content::before {
+  content: 'ECDO / RESEARCH DOSSIER 001';
+  display: block;
+  margin-bottom: 22px;
+  color: var(--iron-bright);
+  font-family: var(--heading-font-family);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
 }
 
 .video-hero h1 {
-  max-width: 18ch;
-  margin: 0 0 0.4em;
-  color: var(--paper, #e8eef4);
-  font-size: clamp(2.35rem, 6vw, 4rem);
+  max-width: 9.5ch;
+  margin: 0 0 24px;
+  color: var(--paper);
+  font-size: var(--heading-font-size-xxl);
   font-weight: 600;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
   text-wrap: balance;
 }
 
 .video-hero p {
-  max-width: 40rem;
-  margin: 0.45em 0;
-  color: var(--ice, #a8c5d4);
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  line-height: 1.55;
+  max-width: 610px;
+  margin: 0 0 18px;
+  color: var(--ice);
+  font-size: clamp(1rem, 1.7vw, 1.18rem);
+  line-height: 1.58;
+}
+
+.video-hero p:first-of-type {
+  padding-left: 18px;
+  border-left: 2px solid var(--iron);
+}
+
+.video-hero p strong {
+  color: var(--paper);
 }
 
 .video-hero p em {
-  display: inline-block;
-  margin-top: 0.4em;
-  padding: 0.35em 0.75em;
-  border: 1px solid rgb(212 160 74 / 45%);
-  border-radius: 999px;
-  background: rgb(212 160 74 / 10%);
-  color: var(--warn, #d4a04a);
-  font-size: 0.82em;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 6px;
+  padding: 7px 11px;
+  border: 1px solid rgb(216 164 77 / 36%);
+  border-radius: 2px;
+  background: rgb(5 8 13 / 54%);
+  color: #e6c98f;
+  font-size: 0.76rem;
   font-style: normal;
-  letter-spacing: 0.02em;
+  line-height: 1.4;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
 }
 
-.video-hero a:any-link {
-  color: var(--iron-bright, #e8a05c);
-  font-weight: 500;
+.video-hero p:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: none;
+  margin: 28px 0 0;
+  color: transparent;
+  font-size: 0;
 }
 
-.video-hero.video-failed {
-  background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgb(91 159 212 / 18%) 0%, transparent 55%),
-    linear-gradient(165deg, #0a1628 0%, #05070d 55%, #0c101c 100%);
+.video-hero p:last-child a:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: rgb(5 8 13 / 58%);
+  color: var(--paper);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.video-hero p:last-child a::after {
+  content: '↗';
+  color: var(--iron-bright);
+  font-size: 1rem;
+  transition: transform 180ms ease;
+}
+
+.video-hero p:last-child a:hover,
+.video-hero p:last-child a:focus-visible {
+  border-color: var(--iron);
+  color: var(--iron-bright);
+}
+
+.video-hero p:last-child a:hover::after {
+  transform: translate(2px, -2px);
+}
+
+@media (width >= 700px) {
+  .video-hero .video-hero-content {
+    padding-bottom: 72px;
+  }
+
+  .video-hero::after {
+    top: 56px;
+    right: 6vw;
+  }
 }
 
 @media (width >= 900px) {
+  .video-hero {
+    min-height: min(920px, calc(100svh - var(--nav-height)));
+  }
+
   .video-hero .video-hero-content {
-    padding: 72px 32px 88px;
+    padding: 160px 40px 88px;
+  }
+
+  .video-hero p:last-child {
+    gap: 12px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .video-hero video {
     display: none;
-  }
-
-  .video-hero {
-    background:
-      center / cover no-repeat url('/media/hero-na-topo-web-prompt-a.jpg'),
-      var(--void, #05070d);
   }
 }

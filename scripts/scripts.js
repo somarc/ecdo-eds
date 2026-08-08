@@ -143,6 +143,36 @@ function decorateButtons(main) {
 }
 
 /**
+ * Adds a visual reading hierarchy to authored sections without changing content.
+ * The treatment is deliberately structural so it works across every DA route.
+ * @param {HTMLElement} main The main page element
+ */
+function decorateNarrativeSections(main) {
+  let sectionNumber = 0;
+  const firstSection = main.querySelector(':scope > .section');
+  const firstContent = firstSection?.querySelector(':scope > .default-content-wrapper');
+  if (firstContent?.querySelector(':scope > h1')) firstSection.classList.add('page-intro');
+
+  main.querySelectorAll(':scope > .section').forEach((section) => {
+    const content = section.querySelector(':scope > .default-content-wrapper');
+    const heading = content?.querySelector(':scope > h2');
+    if (!heading) return;
+
+    sectionNumber += 1;
+    section.classList.add('narrative-section');
+    section.dataset.sectionLabel = `Field note / ${String(sectionNumber).padStart(2, '0')}`;
+
+    const isPillarSection = heading.textContent.toLowerCase().includes('four pillars');
+    const pillarList = content.querySelector(':scope > ol');
+    if (isPillarSection && pillarList?.children.length === 4) {
+      pillarList.classList.add('pillar-grid');
+    }
+
+    if (content.children.length <= 3) section.classList.add('reading-note');
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -153,6 +183,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
+  decorateNarrativeSections(main);
 }
 
 /**

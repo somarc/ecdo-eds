@@ -1,20 +1,27 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+footer .footer > div {
+  width: min(100%, var(--content-max));
+  margin: auto;
+  padding: 48px 24px 32px;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer > div::before {
+  content: 'ECDO / HYPOTHESIS LAB';
+  display: block;
+  margin-bottom: 20px;
+  color: var(--iron-bright);
+  font-family: var(--heading-font-family);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
 }
 
 footer .footer p {
+  max-width: 72ch;
   margin: 0;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 56px 40px 36px;
   }
 }

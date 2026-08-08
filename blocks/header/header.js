@@ -124,11 +124,42 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  /*
+   * DA may author the brand and route list in a single section. Normalize that
+   * shape into the boilerplate brand/sections contract before decoration.
+   */
+  if (nav.children.length === 1) {
+    const sourceSection = nav.firstElementChild;
+    const sourceWrapper = sourceSection.querySelector(':scope > .default-content-wrapper');
+    const brandContent = sourceWrapper?.querySelector(':scope > p');
+    const routeList = sourceWrapper?.querySelector(':scope > ul');
+
+    if (brandContent && routeList) {
+      const buildNavSection = (content) => {
+        const section = sourceSection.cloneNode(false);
+        const wrapper = sourceWrapper.cloneNode(false);
+        wrapper.append(content.cloneNode(true));
+        section.append(wrapper);
+        return section;
+      };
+
+      nav.replaceChildren(buildNavSection(brandContent), buildNavSection(routeList));
+    }
+  }
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+
+  let navTools = nav.querySelector('.nav-tools');
+  if (!navTools) {
+    navTools = document.createElement('div');
+    navTools.className = 'nav-tools';
+    navTools.innerHTML = '<p>Hypothesis · not forecast</p>';
+    nav.append(navTools);
+  }
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
@@ -139,6 +170,11 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    navSections.querySelectorAll('a').forEach((link) => {
+      if (new URL(link.href).pathname === window.location.pathname) {
+        link.setAttribute('aria-current', 'page');
+      }
+    });
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
